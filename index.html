@@ -1,362 +1,373 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Tasa de Cambio COP = Bs</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Tasa de Cambio COP = Bs</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f0f0f0;
-            min-height: 100vh;
-            padding: 20px;
-        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-        }
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
 
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-            font-size: 28px;
-        }
+        .app-controls {
+            width: 100%;
+            max-width: 600px; /* Limitar el ancho de los inputs */
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #e0e0e0;
+            border-radius: 10px;
+        }
+        
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
 
-        .controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
 
-        .input-group {
-            display: flex;
-            flex-direction: column;
-        }
+        .input-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+        }
 
-        .input-group label {
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #555;
-        }
+        .input-group input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
 
-        .input-group input {
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
 
-        .buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #3b82f6;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-        button {
-            padding: 15px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .btn-download { background: #3b82f6; color: white; }
-        .btn-share { background: #10b981; color: white; }
 
         /* Estilos de la Previsualización */
-        #preview {
-            border: none; 
-            padding: 20px;
-            background: white;
-            /* Usaremos Flexbox en la sección superior para control absoluto */
-        }
-
-        /* Tasa principal (COP = Bs) */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .header h2 {
-            font-size: 24px;
-            font-weight: 900; 
-        }
-
-        .header .tasa-numero {
-            font-size: 60px;
-            font-weight: 900; 
-            color: #000;
-        }
-
-        /* CONTENEDOR DE LOGOS Y BANDERAS (CRUCIAL PARA LA ALINEACIÓN) */
-        .banderas {
-            display: flex;
-            justify-content: space-between; /* Distribución uniforme */
-            align-items: flex-start; /* Alinea los ítems desde arriba */
-            padding: 15px 0 5px;
-            margin-bottom: 15px;
-        }
-
-        .bandera, .logo-item {
-            text-align: center;
-            flex-basis: 22%; /* Asignar espacio similar a cada elemento */
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
-        }
-
-        /* Contenedor Fijo para todas las imágenes */
-        .img-wrapper {
-            /* Definimos un espacio fijo para que todas las imágenes se alineen */
-            width: 100%; 
-            height: 65px; /* Altura máxima para la fila de imágenes */
-            display: flex;
-            justify-content: center; 
-            align-items: center; 
-            overflow: hidden; 
-            margin-bottom: 5px;
-        }
-
-        .bandera .img-wrapper { max-width: 90px; }
-        .logo-item .img-wrapper { max-width: 75px; }
+        #preview {
+            border: none; 
+            padding: 20px;
+            background: white;
+            /* Forzar ancho para la imagen final */
+            max-width: 600px; 
+            margin: 0 auto; 
+        }
         
+        /* Contenedor de la Tasa Principal (COP = Bs) */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Alineación arriba para el título */
+            margin-bottom: 5px;
+        }
 
-        .bandera-img, .logo-img {
-            max-width: 100%; 
-            max-height: 100%; 
-            object-fit: contain; /* Mantiene la proporción y ajusta al contenedor */
-        }
+        .header h2 {
+            font-size: 28px; /* Título más grande */
+            font-weight: 900; 
+        }
 
-        /* Texto de las Banderas (Ajuste de Fuente) */
-        .bandera-texto {
-            font-size: 15px; /* Un poco más pequeño para encajar */
-            color: #333;
-            font-weight: bold;
-            line-height: 1.2; /* Reduce el espacio entre líneas */
-        }
+        .header .tasa-numero {
+            font-size: 70px; /* Número más grande */
+            font-weight: 900; 
+            color: #000;
+            line-height: 1; /* Ajuste para que el número no genere mucho espacio vertical */
+        }
 
-        /* Tasa Dólar BCV: Alineación horizontal para el título */
-        .tasa-dolar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0 0;
-            margin-bottom: 10px;
-            border-top: 1px solid #333; /* Separador */
-        }
+        /* Contenedor de Logos y Banderas */
+        .banderas {
+            display: flex;
+            justify-content: space-around; /* Espacio uniforme entre los elementos */
+            align-items: flex-start;
+            padding: 15px 0 5px;
+            border-bottom: 2px solid #000; /* Separador debajo de los logos */
+            margin-bottom: 15px;
+        }
 
-        .tasa-dolar span:first-child {
-            font-size: 24px;
-            font-weight: 900;
-            text-decoration: underline; /* Subrayado como en la imagen de ejemplo */
-        }
+        .bandera, .logo-item {
+            text-align: center;
+            flex-basis: 22%; 
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+        }
 
-        .tasa-dolar span:last-child {
-            font-size: 60px;
-            font-weight: 900;
-            color: #000;
-        }
+        /* Contenedor Fijo para todas las imágenes (para alineación) */
+        .img-wrapper {
+            width: 100%; 
+            height: 50px; /* Altura máxima para la fila de imágenes */
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            overflow: hidden; 
+            margin-bottom: 3px;
+        }
+
+        .bandera .img-wrapper { max-width: 80px; }
+        .logo-item .img-wrapper { max-width: 60px; }
+        
+
+        .bandera-img, .logo-img {
+            max-width: 100%; 
+            max-height: 100%; 
+            object-fit: contain; 
+        }
+
+        .bandera-texto {
+            font-size: 14px; 
+            color: #333;
+            font-weight: bold;
+            line-height: 1.1; 
+        }
+        
+        /* Contenedor de la Tasa Dólar BCV */
+        .tasa-dolar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start; /* Alineación arriba para el título */
+            margin-bottom: 10px;
+        }
+
+        .tasa-dolar span:first-child {
+            font-size: 28px; /* Título más grande */
+            font-weight: 900;
+            text-decoration: underline; 
+        }
+
+        .tasa-dolar span:last-child {
+            font-size: 60px; /* Número más grande */
+            font-weight: 900;
+            color: #000;
+            line-height: 1; /* Ajuste para que el número no genere mucho espacio vertical */
+        }
 
         /* Estilos de la tabla */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            text-align: right; /* Alineación de contenido por defecto a la derecha */
+        }
         
-        th {
-            text-align: left;
-            padding: 10px 0;
-            font-size: 18px;
-            font-weight: 900;
+        th {
+            text-align: left;
+            padding: 10px 5px;
+            font-size: 20px;
+            font-weight: 900;
+        }
+        
+        th:nth-child(2), th:nth-child(3) {
+            text-align: right; /* Centra los títulos de las columnas de números */
         }
 
-        td {
-            padding: 8px 0;
-            font-size: 18px;
-            font-weight: bold;
+        td {
+            padding: 6px 5px;
+            font-size: 19px;
+            font-weight: bold;
+        }
+        
+        td:first-child {
+            text-align: left; /* Alinea la columna de pesos a la izquierda */
         }
 
-        /* La fila final verde */
-        .total-row {
-            font-weight: 900;
-            color: #008000;
-            font-size: 24px;
-            border-top: 1px solid #333;
-            margin-top: 15px;
-        }
+        /* La fila final verde */
+        .total-row {
+            font-weight: 900;
+            color: #008000;
+            font-size: 20px;
+            border-top: 1px solid #333;
+            margin-top: 10px;
+        }
 
-        .total-row td {
-            padding-top: 15px;
-        }
-    </style>
+        .total-row td {
+            padding-top: 12px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📊 Generador de Tasa de Cambio</h1>
-
+    
+    <div class="app-controls">
+        <h1 style="margin-top:0;">🛠️ Ajustar Tasas</h1>
         <div class="controls">
             <div class="input-group">
                 <label for="tasaPesos">Tasa COP por Bs:</label>
-                <input type="number" id="tasaPesos" step="0.01" value="14">
+                <input type="number" id="tasaPesos" step="0.01" value="15.05">
             </div>
             <div class="input-group">
                 <label for="tasaDolar">Tasa Dólar BCV (Bs):</label>
-                <input type="number" id="tasaDolar" step="0.01" value="207.89">
+                <input type="number" id="tasaDolar" step="0.01" value="300.00">
             </div>
         </div>
-
         <div class="buttons">
             <button class="btn-download" onclick="descargarImagen()">
                 <span>⬇️</span> Descargar Imagen
             </button>
-            <button class="btn-share" onclick="compartirImagen()">
-                <span>📤</span> Compartir
-            </button>
-        </div>
-
-        <div id="preview">
-            
-            <div class="header">
-                <h2>Tasa De Cambio COP = Bs</h2>
-                <div class="tasa-numero" id="tasaNumero">14</div>
-            </div>
-
-            <div class="banderas">
-                <div class="bandera">
-                    <div class="img-wrapper">
-                        <img src="/images/bandera_colombia.png" class="bandera-img" alt="Bandera Colombia">
-                    </div>
-                    <div class="bandera-texto">colombia</div>
-                </div>
-                
-                <div class="logo-item">
-                    <div class="img-wrapper">
-                        <img src="/images/logo_pina_dolar.png" class="logo-img" alt="Piña Dólar">
-                    </div>
-                    <div class="bandera-texto" style="color:transparent;">.</div>
-                </div>
-                
-                <div class="logo-item">
-                    <div class="img-wrapper">
-                        <img src="/images/logo_binance_bnb.png" class="logo-img" alt="Binance Coin">
-                    </div>
-                    <div class="bandera-texto">BINANCE COIN</div> 
-                </div>
-
-                <div class="bandera">
-                    <div class="img-wrapper">
-                        <img src="/images/bandera_venezuela.png" class="bandera-img" alt="Bandera Venezuela">
-                    </div>
-                    <div class="bandera-texto">venezuela</div>
-                </div>
-            </div>
-            
-            <div class="tasa-dolar">
-                <span>Tasa Del Dólar BCV</span>
-                <span id="tasaDolarDisplay">207.89</span>
-            </div>
-
-            <table id="tablaConversiones">
-                <thead>
-                    <tr>
-                        <th>Pesos</th>
-                        <th>BS</th>
-                        <th>$ BCV</th>
-                    </tr>
-                </thead>
-                <tbody id="tablaBody">
-                </tbody>
-            </table>
         </div>
     </div>
+    <hr>
+    
+        <div id="preview">
+        
+                <div class="header">
+            <h2>Tasa De Cambio COP = Bs</h2>
+            <div class="tasa-numero" id="tasaNumero">15.05</div>
+        </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script>
-        function actualizarTabla() {
-            const tasaPesos = parseFloat(document.getElementById('tasaPesos').value) || 14;
-            const tasaDolar = parseFloat(document.getElementById('tasaDolar').value) || 207.89;
+                <div class="banderas">
+            <div class="bandera">
+                <div class="img-wrapper">
+                    <img src="/images/bandera_colombia.png" class="bandera-img" alt="Bandera Colombia">
+                </div>
+                <div class="bandera-texto">colombia</div>
+            </div>
             
-            document.getElementById('tasaNumero').textContent = tasaPesos;
-            document.getElementById('tasaDolarDisplay').textContent = tasaDolar.toFixed(2);
+                        <div class="logo-item">
+                <div class="img-wrapper">
+                    <img src="/images/logo_pina_dolar.png" class="logo-img" alt="Piña Dólar">
+                </div>
+                <div class="bandera-texto" style="color:#000;">Piña Dólar</div>             </div>
+            
+                        <div class="logo-item">
+                <div class="img-wrapper">
+                    <img src="/images/logo_binance_bnb.png" class="logo-img" alt="Binance Coin">
+                </div>
+                <div class="bandera-texto">BINANCE COIN</div> 
+            </div>
 
-            const pesos = [10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000];
-            const tbody = document.getElementById('tablaBody');
-            tbody.innerHTML = '';
+            <div class="bandera">
+                <div class="img-wrapper">
+                    <img src="/images/bandera_venezuela.png" class="bandera-img" alt="Bandera Venezuela">
+                </div>
+                <div class="bandera-texto">venezuela</div>
+            </div>
+        </div>
+        
+                <div class="tasa-dolar">
+            <span>Tasa Del Dólar BCV</span>
+            <span id="tasaDolarDisplay">300.00</span>
+        </div>
 
-            pesos.forEach(peso => {
-                const bs = (peso / tasaPesos).toFixed(2);
-                const bcv = (peso / (tasaPesos * tasaDolar)).toFixed(2);
-                
-                const tr = document.createElement('tr');
-                tr.innerHTML = 
-                    `<td>${peso.toLocaleString('es-CO')}</td>
-                    <td>${bs}</td>
-                    <td>${bcv}</td>`;
-                tbody.appendChild(tr);
-            });
+                <table id="tablaConversiones">
+            <thead>
+                <tr>
+                    <th>Pesos</th>
+                    <th>BS</th>
+                    <th>$ BCV</th>
+                </tr>
+            </thead>
+            <tbody id="tablaBody">
+            </tbody>
+        </table>
+    </div>
 
-            // Fila final en verde
-            const trFinal = document.createElement('tr');
-            trFinal.className = 'total-row';
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function actualizarTabla() {
+            // Usamos valores de la imagen final como valores por defecto
+            const tasaPesos = parseFloat(document.getElementById('tasaPesos').value) || 15.05;
+            const tasaDolar = parseFloat(document.getElementById('tasaDolar').value) || 300.00;
+            
+            document.getElementById('tasaNumero').textContent = tasaPesos.toFixed(2);
+            document.getElementById('tasaDolarDisplay').textContent = tasaDolar.toFixed(2);
+
+            const pesos = [10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000];
+            const tbody = document.getElementById('tablaBody');
+            tbody.innerHTML = '';
+
+            pesos.forEach(peso => {
+                const bs = (peso / tasaPesos).toFixed(2);
+                const bcv = (peso / (tasaPesos * tasaDolar)).toFixed(2);
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = 
+                    `<td>${peso.toLocaleString('es-CO')}</td>
+                    <td>${bs}</td>
+                    <td>${bcv}</td>`;
+                tbody.appendChild(tr);
+            });
+
+            // Fila final en verde
+            const trFinal = document.createElement('tr');
+            trFinal.className = 'total-row';
+            
+            // Calcula el equivalente de 1 USD en COP
+            const unDolarEnPesos = (tasaPesos * tasaDolar).toFixed(0);
+            const unDolarEnBs = tasaDolar.toFixed(2);
             
-            // Calcula el equivalente de 1 USD en COP para la primera columna.
-            const unDolarEnPesos = (tasaPesos * tasaDolar).toFixed(0);
-            const unDolarEnBs = tasaDolar.toFixed(2);
-            
-            trFinal.innerHTML = 
-                `<td>${unDolarEnPesos.toLocaleString('es-CO')}</td>
-                <td>${unDolarEnBs}</td>
-                <td>1.00</td>`;
-            tbody.appendChild(trFinal);
-        }
+            trFinal.innerHTML = 
+                `<td>${unDolarEnPesos.toLocaleString('es-CO')}</td>
+                <td>${unDolarEnBs}</td>
+                <td>1.00</td>`;
+            tbody.appendChild(trFinal);
+        }
 
-        function descargarImagen() {
-            const elemento = document.getElementById('preview');
-            
-            html2canvas(elemento, {
-                scale: 2,
-                backgroundColor: '#ffffff',
+        function descargarImagen() {
+            const elemento = document.getElementById('preview');
+            
+            html2canvas(elemento, {
+                scale: 2,
+                backgroundColor: '#ffffff',
                 useCORS: true, 
-                logging: false
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `tasa-cambio-${Date.now()}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            }).catch(error => {
-                console.error('Error al generar imagen:', error);
-                alert('Error al generar la imagen. Por favor, verifica que las rutas de las imágenes son correctas y que están accesibles.');
-            });
-        }
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `tasa-cambio-${Date.now()}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).catch(error => {
+                console.error('Error al generar imagen:', error);
+                alert('Error al generar la imagen. Por favor, verifica que las rutas de las imágenes son correctas y que están accesibles.');
+            });
+        }
 
-        async function compartirImagen() {
-            descargarImagen(); 
-        }
+        // Event listeners
+        document.getElementById('tasaPesos').addEventListener('input', actualizarTabla);
+        document.getElementById('tasaDolar').addEventListener('input', actualizarTabla);
 
-        // Event listeners
-        document.getElementById('tasaPesos').addEventListener('input', actualizarTabla);
-        document.getElementById('tasaDolar').addEventListener('input', actualizarTabla);
-
-        // Inicializar
-        actualizarTabla();
-    </script>
+        // Inicializar
+        actualizarTabla();
+    </script>
 </body>
 </html>
