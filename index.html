@@ -61,13 +61,20 @@
             font-size: 14px;
         }
 
-        .input-group input {
+        .input-group input[type="number"],
+        .input-group input[type="color"] {
             padding: 12px;
             border: 2px solid #ddd;
             border-radius: 8px;
             font-size: 16px;
             width: 100%;
             transition: border-color 0.3s;
+        }
+
+        .input-group input[type="color"] {
+            height: 50px;
+            padding: 5px;
+            cursor: pointer;
         }
 
         .input-group input:focus {
@@ -294,8 +301,17 @@
             }
 
             .input-group input {
-                padding: 8px;
-                font-size: 14px;
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .input-group input[type="number"] {
+                font-size: 16px;
+            }
+
+            .input-group input[type="color"] {
+                height: 45px;
+                padding: 5px;
             }
 
             button {
@@ -447,7 +463,11 @@
             }
 
             input[type="color"] {
-                height: 35px;
+                height: 40px;
+            }
+
+            .input-group input[type="number"] {
+                font-size: 16px;
             }
         }
 
@@ -585,6 +605,33 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
+        // Cargar valores guardados al inicio
+        function cargarValoresGuardados() {
+            const tasaPesos = localStorage.getItem('tasaPesos') || '14.00';
+            const tasaDolar = localStorage.getItem('tasaDolar') || '207.89';
+            const tamanoTasa = localStorage.getItem('tamanoTasa') || '42';
+            const colorTasa = localStorage.getItem('colorTasa') || '#000000';
+            const tamanoDolar = localStorage.getItem('tamanoDolar') || '40';
+            const colorDolar = localStorage.getItem('colorDolar') || '#000000';
+
+            document.getElementById('tasaPesos').value = tasaPesos;
+            document.getElementById('tasaDolar').value = tasaDolar;
+            document.getElementById('tamanoTasa').value = tamanoTasa;
+            document.getElementById('colorTasa').value = colorTasa;
+            document.getElementById('tamanoDolar').value = tamanoDolar;
+            document.getElementById('colorDolar').value = colorDolar;
+        }
+
+        // Guardar valores en localStorage
+        function guardarValores() {
+            localStorage.setItem('tasaPesos', document.getElementById('tasaPesos').value);
+            localStorage.setItem('tasaDolar', document.getElementById('tasaDolar').value);
+            localStorage.setItem('tamanoTasa', document.getElementById('tamanoTasa').value);
+            localStorage.setItem('colorTasa', document.getElementById('colorTasa').value);
+            localStorage.setItem('tamanoDolar', document.getElementById('tamanoDolar').value);
+            localStorage.setItem('colorDolar', document.getElementById('colorDolar').value);
+        }
+
         function actualizarTabla() {
             const tasaPesos = parseFloat(document.getElementById('tasaPesos').value) || 14.00;
             const tasaDolar = parseFloat(document.getElementById('tasaDolar').value) || 207.89;
@@ -594,6 +641,9 @@
             const colorTasa = document.getElementById('colorTasa').value || '#000000';
             const tamanoDolar = document.getElementById('tamanoDolar').value || 40;
             const colorDolar = document.getElementById('colorDolar').value || '#000000';
+            
+            // Guardar en localStorage
+            guardarValores();
             
             // Aplicar estilos dinámicos
             const tasaNumeroEl = document.getElementById('tasaNumero');
@@ -663,6 +713,8 @@
         document.getElementById('tamanoDolar').addEventListener('input', actualizarTabla);
         document.getElementById('colorDolar').addEventListener('input', actualizarTabla);
 
+        // Cargar valores guardados y actualizar al inicio
+        cargarValoresGuardados();
         actualizarTabla();
     </script>
 </body>
