@@ -133,30 +133,39 @@
             margin-bottom: 20px;
         }
 
-        .bandera {
+        .bandera, .logo-item {
             text-align: center;
-            flex-basis: 25%;
+            flex-basis: 25%; /* Distribuir espacio */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centrar contenido dentro del flex-item */
         }
+
+        /* Contenedor específico para cada imagen */
+        .img-wrapper {
+            width: 100%; /* Ocupar el ancho del flex-item */
+            display: flex;
+            justify-content: center; /* Centrar la imagen horizontalmente */
+            align-items: center; /* Centrar la imagen verticalmente */
+            margin-bottom: 5px; /* Espacio entre imagen y texto */
+            /* Aquí definimos el tamaño máximo que puede ocupar la imagen */
+            max-width: 90px; /* Ancho máximo para banderas */
+            height: 60px; /* Altura fija para mantener proporciones en la fila */
+            overflow: hidden; /* Ocultar partes de la imagen si se desborda */
+        }
+        .logo-item .img-wrapper {
+            max-width: 70px; /* Ancho máximo para logos Piña y BNB */
+            height: 60px; /* Misma altura para que estén alineados */
+        }
         
-        .logo-item {
-            text-align: center;
-            flex-basis: 20%;
-        }
 
-        .bandera-img {
-            /* Ajustar tamaño de banderas y logos */
-            width: 100%;
-            max-width: 90px;
-            height: auto;
-            margin-bottom: 5px;
+        .bandera-img, .logo-img {
+            max-width: 100%; /* Asegura que la imagen no exceda el ancho de su contenedor */
+            max-height: 100%; /* Asegura que la imagen no exceda la altura de su contenedor */
+            object-fit: contain; /* Redimensiona la imagen para que encaje dentro del contenedor, manteniendo su proporción */
+            height: auto; /* Mantener la proporción al ajustar el ancho */
         }
 
-        .logo-img {
-            width: 100%;
-            max-width: 60px;
-            height: auto;
-            margin-bottom: 5px;
-        }
 
         .bandera-texto {
             font-style: normal;
@@ -261,20 +270,28 @@
 
             <div class="banderas">
                 <div class="bandera">
-                                        <img src="/images/bandera_colombia.png" class="bandera-img" alt="Bandera Colombia">
+                    <div class="img-wrapper">
+                        <img src="/images/bandera_colombia.png" class="bandera-img" alt="Bandera Colombia">
+                    </div>
                     <div class="bandera-texto">colombia</div>
                 </div>
                 
                 <div class="logo-item">
-                                        <img src="/images/logo_pina_dolar.png" class="logo-img" alt="Piña Dólar">
+                    <div class="img-wrapper">
+                        <img src="/images/logo_pina_dolar.png" class="logo-img" alt="Piña Dólar">
+                    </div>
                 </div>
                 
                 <div class="logo-item">
-                                        <img src="/images/logo_binance_bnb.png" class="logo-img" alt="Binance Coin">
+                    <div class="img-wrapper">
+                        <img src="/images/logo_binance_bnb.png" class="logo-img" alt="Binance Coin">
+                    </div>
                 </div>
 
                 <div class="bandera">
-                                        <img src="/images/bandera_venezuela.png" class="bandera-img" alt="Bandera Venezuela">
+                    <div class="img-wrapper">
+                        <img src="/images/bandera_venezuela.png" class="bandera-img" alt="Bandera Venezuela">
+                    </div>
                     <div class="bandera-texto">venezuela</div>
                 </div>
             </div>
@@ -344,7 +361,6 @@
             html2canvas(elemento, {
                 scale: 2,
                 backgroundColor: '#ffffff',
-                // Importantísimo: esto ayuda a cargar imágenes de diferentes dominios
                 useCORS: true, 
                 logging: false
             }).then(canvas => {
