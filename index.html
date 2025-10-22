@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tasa De Cambio COP = Bs</title>
     <style>
         * {
@@ -15,7 +15,7 @@
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -25,7 +25,7 @@
             width: 100%;
             max-width: 650px;
             margin-bottom: 25px;
-            padding: 25px;
+            padding: 20px;
             background: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -145,10 +145,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 15px 5px;
             border-bottom: 3px solid #000;
             margin-bottom: 20px;
-            gap: 10px;
+            gap: 5px;
         }
 
         .bandera, .logo-item {
@@ -156,6 +156,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            min-width: 0;
         }
 
         .img-wrapper {
@@ -163,18 +164,23 @@
             justify-content: center;
             align-items: center;
             height: 90px;
+            width: 100%;
         }
 
         .bandera-img {
-            max-width: 90px;
+            max-width: 100%;
+            width: auto;
             max-height: 80px;
+            height: auto;
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
         .logo-img {
-            max-width: 85px;
+            max-width: 100%;
+            width: auto;
             max-height: 75px;
+            height: auto;
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
@@ -259,7 +265,7 @@
 
             @media (max-width: 768px) {
             body {
-                padding: 10px;
+                padding: 5px;
             }
 
             .app-controls {
@@ -268,150 +274,95 @@
             }
 
             .app-controls h1 {
-                font-size: 20px;
+                font-size: 18px;
                 margin-bottom: 15px;
             }
 
             .controls {
                 grid-template-columns: 1fr;
-                gap: 15px;
+                gap: 12px;
             }
 
             .extra-controls {
                 grid-template-columns: 1fr 1fr;
-                gap: 10px;
+                gap: 8px;
             }
 
             .input-group label {
-                font-size: 13px;
+                font-size: 12px;
+                margin-bottom: 5px;
             }
 
             .input-group input {
-                padding: 10px;
+                padding: 8px;
                 font-size: 14px;
             }
 
             button {
-                padding: 12px 20px;
+                padding: 10px 18px;
                 font-size: 14px;
+                width: 100%;
             }
 
             #preview {
-                padding: 15px;
+                padding: 15px 12px;
                 max-width: 100%;
             }
 
             .header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-                margin-bottom: 15px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 12px;
             }
 
             .header h2 {
-                font-size: 16px;
+                font-size: 14px;
+                flex: 1;
             }
 
             .header .tasa-numero {
-                font-size: 28px !important;
-                align-self: flex-end;
+                font-size: 32px !important;
+                flex-shrink: 0;
             }
 
             .banderas {
-                padding: 10px 0;
-                gap: 5px;
+                padding: 10px 2px;
+                gap: 3px;
             }
 
             .img-wrapper {
-                height: 60px;
+                height: 55px;
             }
 
             .bandera-img {
-                max-width: 60px;
                 max-height: 50px;
             }
 
             .logo-img {
-                max-width: 55px;
                 max-height: 45px;
             }
 
             .tasa-dolar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-                margin-bottom: 15px;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+                margin-bottom: 12px;
+                gap: 10px;
             }
 
             .tasa-dolar span:first-child {
-                font-size: 16px;
+                font-size: 14px;
+                flex: 1;
             }
 
             .tasa-dolar span:last-child {
-                font-size: 26px !important;
-                align-self: flex-end;
+                font-size: 30px !important;
+                flex-shrink: 0;
             }
 
             table {
-                font-size: 14px;
-            }
-
-            th {
-                font-size: 15px;
-                padding: 6px 3px;
-            }
-
-            td {
-                font-size: 14px;
-                padding: 4px 3px;
-            }
-
-            .total-row {
-                font-size: 15px;
-            }
-
-            .total-row td {
-                padding-top: 8px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .app-controls h1 {
-                font-size: 18px;
-            }
-
-            .extra-controls {
-                grid-template-columns: 1fr;
-            }
-
-            .header h2 {
-                font-size: 14px;
-            }
-
-            .header .tasa-numero {
-                font-size: 24px !important;
-            }
-
-            .img-wrapper {
-                height: 50px;
-            }
-
-            .bandera-img {
-                max-width: 50px;
-                max-height: 40px;
-            }
-
-            .logo-img {
-                max-width: 45px;
-                max-height: 35px;
-            }
-
-            .tasa-dolar span:first-child {
-                font-size: 14px;
-            }
-
-            .tasa-dolar span:last-child {
-                font-size: 22px !important;
+                font-size: 12px;
             }
 
             th {
@@ -426,6 +377,92 @@
 
             .total-row {
                 font-size: 13px;
+            }
+
+            .total-row td {
+                padding-top: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-controls h1 {
+                font-size: 16px;
+            }
+
+            .extra-controls {
+                grid-template-columns: 1fr;
+            }
+
+            .header h2 {
+                font-size: 12px;
+            }
+
+            .header .tasa-numero {
+                font-size: 28px !important;
+            }
+
+            .img-wrapper {
+                height: 45px;
+            }
+
+            .bandera-img {
+                max-height: 40px;
+            }
+
+            .logo-img {
+                max-height: 35px;
+            }
+
+            .tasa-dolar span:first-child {
+                font-size: 12px;
+            }
+
+            .tasa-dolar span:last-child {
+                font-size: 26px !important;
+            }
+
+            th {
+                font-size: 11px;
+                padding: 4px 1px;
+            }
+
+            td {
+                font-size: 11px;
+                padding: 2px 1px;
+            }
+
+            .total-row {
+                font-size: 12px;
+            }
+
+            input[type="color"] {
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .header h2 {
+                font-size: 11px;
+            }
+
+            .header .tasa-numero {
+                font-size: 24px !important;
+            }
+
+            .tasa-dolar span:first-child {
+                font-size: 11px;
+            }
+
+            .tasa-dolar span:last-child {
+                font-size: 22px !important;
+            }
+
+            th {
+                font-size: 10px;
+            }
+
+            td {
+                font-size: 10px;
             }
         }
     </style>
