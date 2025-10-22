@@ -110,9 +110,11 @@
             padding: 30px 25px 25px 25px;
             background: white;
             max-width: 650px;
+            width: 100%;
             margin: 0 auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             border-radius: 15px;
+            overflow-x: auto;
         }
 
         /* Encabezado principal */
@@ -205,6 +207,11 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
+            font-size: 19px;
+        }
+
+        thead {
+            background: #f8f9fa;
         }
 
         th {
@@ -212,6 +219,7 @@
             padding: 8px 5px;
             font-size: 20px;
             font-weight: 900;
+            white-space: nowrap;
         }
 
         th:nth-child(2), th:nth-child(3) {
@@ -226,6 +234,7 @@
             padding: 5px 5px;
             font-size: 19px;
             font-weight: 600;
+            white-space: nowrap;
         }
 
         td:first-child {
@@ -249,45 +258,174 @@
         }
 
             @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .app-controls {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .app-controls h1 {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+
             .controls {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
 
             .extra-controls {
                 grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .input-group label {
+                font-size: 13px;
+            }
+
+            .input-group input {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            #preview {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                margin-bottom: 15px;
             }
 
             .header h2 {
-                font-size: 18px;
-            }
-
-            .header .tasa-numero {
-                font-size: 32px;
-            }
-
-            .tasa-dolar span:first-child {
-                font-size: 18px;
-            }
-
-            .tasa-dolar span:last-child {
-                font-size: 32px;
-            }
-
-            th {
                 font-size: 16px;
             }
 
-            td {
-                font-size: 15px;
+            .header .tasa-numero {
+                font-size: 28px !important;
+                align-self: flex-end;
             }
 
-            .bandera-img, .logo-img {
-                max-width: 60px;
-                max-height: 55px;
+            .banderas {
+                padding: 10px 0;
+                gap: 5px;
             }
 
             .img-wrapper {
-                height: 70px;
+                height: 60px;
+            }
+
+            .bandera-img {
+                max-width: 60px;
+                max-height: 50px;
+            }
+
+            .logo-img {
+                max-width: 55px;
+                max-height: 45px;
+            }
+
+            .tasa-dolar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+                margin-bottom: 15px;
+            }
+
+            .tasa-dolar span:first-child {
+                font-size: 16px;
+            }
+
+            .tasa-dolar span:last-child {
+                font-size: 26px !important;
+                align-self: flex-end;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th {
+                font-size: 15px;
+                padding: 6px 3px;
+            }
+
+            td {
+                font-size: 14px;
+                padding: 4px 3px;
+            }
+
+            .total-row {
+                font-size: 15px;
+            }
+
+            .total-row td {
+                padding-top: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-controls h1 {
+                font-size: 18px;
+            }
+
+            .extra-controls {
+                grid-template-columns: 1fr;
+            }
+
+            .header h2 {
+                font-size: 14px;
+            }
+
+            .header .tasa-numero {
+                font-size: 24px !important;
+            }
+
+            .img-wrapper {
+                height: 50px;
+            }
+
+            .bandera-img {
+                max-width: 50px;
+                max-height: 40px;
+            }
+
+            .logo-img {
+                max-width: 45px;
+                max-height: 35px;
+            }
+
+            .tasa-dolar span:first-child {
+                font-size: 14px;
+            }
+
+            .tasa-dolar span:last-child {
+                font-size: 22px !important;
+            }
+
+            th {
+                font-size: 13px;
+                padding: 5px 2px;
+            }
+
+            td {
+                font-size: 12px;
+                padding: 3px 2px;
+            }
+
+            .total-row {
+                font-size: 13px;
             }
         }
     </style>
