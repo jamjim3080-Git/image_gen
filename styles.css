@@ -118,7 +118,7 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .header h2 {
@@ -141,8 +141,8 @@ button:hover {
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    padding: 15px 0 15px;
-    margin-bottom: 20px;
+    padding: 5px 0 5px;
+    margin-bottom: 10px;
     border-bottom: 3px solid #000;
 }
 
@@ -184,9 +184,9 @@ button:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding: 10px 0;
     border-bottom: none;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .tasa-dolar span:first-child {
@@ -214,6 +214,34 @@ table {
 th {
     text-align: left;
     padding: 12px 0;
+    font-size: 24px;
+    font-weight: 900;
+    border-bottom: 3px solid #000;
+}
+
+td {
+    padding: 18px 0;
+    font-size: 32px;
+    border-bottom: none;
+    font-weight: 900;
+}
+
+.total-row {
+    font-weight: 900;
+    color: #008000;
+    font-size: 36px;
+    border-top: 3px solid #000;
+}
+
+.total-row td {
+    padding-top: 20px;
+    border-bottom: none;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+@media (min-width: 768px) {
     .tasa-dolar {
         flex-direction: row;
     }
