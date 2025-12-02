@@ -214,34 +214,6 @@ table {
 th {
     text-align: left;
     padding: 12px 0;
-    font-size: 24px;
-    font-weight: 900;
-    border-bottom: 3px solid #000;
-}
-
-td {
-    padding: 12px 0;
-    font-size: 24px;
-    border-bottom: none;
-    font-weight: 900;
-}
-
-.total-row {
-    font-weight: 900;
-    color: #008000;
-    font-size: 28px;
-    border-top: 3px solid #000;
-}
-
-.total-row td {
-    padding-top: 20px;
-    border-bottom: none;
-}
-
-/* ===================================
-   RESPONSIVE DESIGN
-   =================================== */
-@media (min-width: 768px) {
     .tasa-dolar {
         flex-direction: row;
     }

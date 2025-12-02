@@ -127,12 +127,51 @@ async function compartirImagen() {
 }
 
 // ===================================
+// PERSISTENCIA DE DATOS
+// ===================================
+
+/**
+ * Guarda los valores actuales en localStorage
+ */
+function guardarValores() {
+    const tasaPesos = document.getElementById('tasaPesos').value;
+    const tasaDolar = document.getElementById('tasaDolar').value;
+    
+    localStorage.setItem('tasaPesos', tasaPesos);
+    localStorage.setItem('tasaDolar', tasaDolar);
+}
+
+/**
+ * Carga los valores guardados del localStorage
+ */
+function cargarValores() {
+    const tasaPesos = localStorage.getItem('tasaPesos');
+    const tasaDolar = localStorage.getItem('tasaDolar');
+    
+    if (tasaPesos) {
+        document.getElementById('tasaPesos').value = tasaPesos;
+    }
+    
+    if (tasaDolar) {
+        document.getElementById('tasaDolar').value = tasaDolar;
+    }
+}
+
+// ===================================
 // INICIALIZACIÓN
 // ===================================
 
-// Event listeners para actualización en tiempo real
-document.getElementById('tasaPesos').addEventListener('input', actualizarTabla);
-document.getElementById('tasaDolar').addEventListener('input', actualizarTabla);
+// Event listeners para actualización en tiempo real y guardado
+document.getElementById('tasaPesos').addEventListener('input', () => {
+    actualizarTabla();
+    guardarValores();
+});
+
+document.getElementById('tasaDolar').addEventListener('input', () => {
+    actualizarTabla();
+    guardarValores();
+});
 
 // Inicializar la tabla al cargar la página
+cargarValores();
 actualizarTabla();
