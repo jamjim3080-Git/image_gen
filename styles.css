@@ -100,11 +100,6 @@ button:hover {
     color: white;
 }
 
-.btn-share {
-    background: #10b981;
-    color: white;
-}
-
 /* ===================================
    PREVISUALIZACIÓN
    =================================== */
@@ -212,15 +207,16 @@ table {
 }
 
 th {
-    text-align: left;
-    padding: 12px 0;
+    text-align: center;
+    padding: 12px 10px;
     font-size: 24px;
     font-weight: 900;
     border-bottom: 3px solid #000;
 }
 
 td {
-    padding: 18px 0;
+    text-align: center;
+    padding: 18px 10px;
     font-size: 32px;
     border-bottom: none;
     font-weight: 900;

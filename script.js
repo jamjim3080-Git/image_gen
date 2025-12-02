@@ -117,14 +117,7 @@ async function descargarImagen() {
     }
 }
 
-/**
- * Comparte la imagen generada (actualmente solo descarga)
- */
-async function compartirImagen() {
-    // Por ahora solo descarga la imagen
-    // Se puede implementar Web Share API en el futuro
-    descargarImagen();
-}
+
 
 // ===================================
 // PERSISTENCIA DE DATOS
@@ -136,7 +129,7 @@ async function compartirImagen() {
 function guardarValores() {
     const tasaPesos = document.getElementById('tasaPesos').value;
     const tasaDolar = document.getElementById('tasaDolar').value;
-    
+
     localStorage.setItem('tasaPesos', tasaPesos);
     localStorage.setItem('tasaDolar', tasaDolar);
 }
@@ -147,11 +140,11 @@ function guardarValores() {
 function cargarValores() {
     const tasaPesos = localStorage.getItem('tasaPesos');
     const tasaDolar = localStorage.getItem('tasaDolar');
-    
+
     if (tasaPesos) {
         document.getElementById('tasaPesos').value = tasaPesos;
     }
-    
+
     if (tasaDolar) {
         document.getElementById('tasaDolar').value = tasaDolar;
     }
